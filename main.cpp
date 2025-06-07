@@ -147,10 +147,10 @@ int main(int argc, char *argv[]){
     img_2 = img_2_process;
     
     string GaryPassword = enc.decrypt_GrayImage(img);
-    cout << "Decoded password in GrayImage: " << GaryPassword << endl;
+    cout << "The decoded password in GrayImage: " << GaryPassword << endl;
     
     string RGBPassword = enc.decrypt_RGBImage(img_2);
-    cout << "Decoded password in RGBImage: " << RGBPassword << endl;
+    cout << "The decoded password in RGBImage: " << RGBPassword << endl;
     
 //i dont know how to jump to bitfieldfilter shit
     
