@@ -49,12 +49,21 @@ int main(int argc, char *argv[]){
     cout << "8.FisheyeEffect" << endl;
     cout << "9.Threshold(just for gray)" << endl;
     cout << "10.OldPhotoEffect(just for gray)" << endl;
+    cout << "11.ASCII" << endl;
     
     int32_t option = 0;
+    int cool = 0;
     string op;
     getline(cin,op);
     stringstream read(op);
-    int times = (op.begin(),op.end(),'&');
+    int times = count(op.begin(), op.end(), '&');
+    if (times == 0 && !op.empty()) {
+        times = 1;
+    } else if (times > 0) {
+    
+        times++;
+    }
+       
     for(int i = 0 ; i < times ; i++)
     {
       int temp;
@@ -71,13 +80,21 @@ int main(int argc, char *argv[]){
         case 8: option = option | CASE_FisheyeEffect; break;
         case 9: option = option | CASE_Threshold; break;
         case 10: option = option | CASE_OldPhotoEffect; break;
+        case 11: 
+        
+          RGBImage* special = new RGBImage();
+          special->LoadImage("Image-Folder/truck.png");
+          special->Display_ASCII();
+          cool = 1;
+          break;
       }
     }
-    
-    loadCase(option,0);
+    if(cool == 0){
+      loadCase(option,0);
+    }
     
     cout << "If you still want to try"<< endl <<"please enter 1 to continue, else enter 0 to go encryption" << endl;
-    
+
     cin >> flag;
     cin.ignore();
     
@@ -97,7 +114,6 @@ int main(int argc, char *argv[]){
     
     
     cout << "Please enter the sentence you want to encrypt in the picture." << endl;
-    cin.ignore();
     string passwd;
     getline(cin,passwd);
     
