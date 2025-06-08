@@ -44,21 +44,20 @@ void loadCase(int32_t option,int form){
 }
 
 void printCase(int32_t option,int form){
+
+  GrayImage *img = new GrayImage();
+  img->LoadImage("Image-Folder/1-1.jpg");
+  
+  RGBImage *img_2 = new RGBImage();
+  img_2->LoadImage("Image-Folder/lena.jpg");
+  cout << "Here are the original pictures!" << endl;
+  img -> Display_X_Server();
+  img_2 -> Display_X_Server();
   
 //1.Trigger Horizon flip
 
   if(option & CASE_Horizon_flip){
-  
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/1-1.jpg");//cat
-  
-      RGBImage *img_2 = new RGBImage();
-      img_2->LoadImage("Image-Folder/1-2.jpg");//spiderman
-  
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-      img_2 -> Display_X_Server();
-  
+      
       cout << "Procession......." << endl;
     
       GrayImage *img_process = img->Horizon_flip();
@@ -67,10 +66,10 @@ void printCase(int32_t option,int form){
       img = img_process;
     
       RGBImage *img_2_process = img_2->Horizon_flip();
-      img_2_process->Display_X_Server();
+      img_2_process->Display_X_Server(); 
       delete img_2;
       img_2 = img_2_process;
-   
+
   }
 //2.Trigger Mosaic filter
 
@@ -81,16 +80,7 @@ void printCase(int32_t option,int form){
     int size = 0;
     
     cin >> size;
-    
-    GrayImage *img = new GrayImage();
-    img->LoadImage("Image-Folder/2-1.jpg");//girl
-  
-    RGBImage *img_2 = new RGBImage();
-    img_2->LoadImage("Image-Folder/2-2.jpg");//deadchild
-    
-    cout << "Here are the original pictures!" << endl;
-    img -> Display_X_Server();
-    img_2 -> Display_X_Server();
+    cin.ignore();
   
     cout << "Procession......." << endl;
     
@@ -103,22 +93,12 @@ void printCase(int32_t option,int form){
     img_2_process->Display_X_Server();
     delete img_2;
     img_2 = img_2_process;
-    
+
   }
 //3.Trigger Gaussian filter
 
   if(option & CASE_Gaussian_filter){
     
-    GrayImage *img = new GrayImage();
-    img->LoadImage("Image-Folder/3-1.jpg");//sky
-  
-    RGBImage *img_2 = new RGBImage();
-    img_2->LoadImage("Image-Folder/3-2.jpg");//dog
-    
-    cout << "Here are the original pictures!" << endl;
-    img -> Display_X_Server();
-    img_2 -> Display_X_Server();
-  
     cout << "Procession......." << endl;
     
     GrayImage *img_process = img->Gaussian_filter(7,1.5);
@@ -130,22 +110,13 @@ void printCase(int32_t option,int form){
     img_2_process->Display_X_Server();
     delete img_2;
     img_2 = img_2_process;
+
   }
   
 //4.Trigger Laplacian filter
 
   if(option & CASE_Laplacian_filter){
-  
-    GrayImage *img = new GrayImage();
-    img->LoadImage("Image-Folder/4-1.jpg");//cat
-  
-    RGBImage *img_2 = new RGBImage();
-    img_2->LoadImage("Image-Folder/4-2.jpg");//dog
     
-    cout << "Here are the original pictures!" << endl;
-    img -> Display_X_Server();
-    img_2 -> Display_X_Server();
-  
     cout << "Procession......." << endl;
     
     GrayImage *img_process = img->Laplacian_filter();
@@ -157,21 +128,12 @@ void printCase(int32_t option,int form){
     img_2_process->Display_X_Server();
     delete img_2;
     img_2 = img_2_process;
+
   }
 
 //5.Trigger negative filter
 
   if(option & CASE_negative_filter){
-  
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/1-2.jpg");//spiderman
-  
-      RGBImage *img_2 = new RGBImage();
-      img_2->LoadImage("Image-Folder/4-2.jpg");//dog
-      
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-      img_2 -> Display_X_Server();
   
       cout << "Procession......." << endl;
     
@@ -184,20 +146,11 @@ void printCase(int32_t option,int form){
       img_2_process->Display_X_Server();
       delete img_2;
       img_2 = img_2_process;
+
   }
 //6.Trigger adjustContrast
 
   if(option & CASE_adjustContrast){
-  
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/1-2.jpg");//spiderman
-  
-      RGBImage *img_2 = new RGBImage();
-      img_2->LoadImage("Image-Folder/4-2.jpg");//dog
-      
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-      img_2 -> Display_X_Server();
   
       cout << "Procession......." << endl;
     
@@ -210,36 +163,38 @@ void printCase(int32_t option,int form){
       img_2_process->Display_X_Server();
       delete img_2;
       img_2 = img_2_process;
+
   }
 //7.Trigger TiltShifter
 
   if(option & CASE_TiltShifter){
   
-    GrayImage *img_3 = new GrayImage();
-    img_3->LoadImage("Image-Folder/city.jpg");
+    GrayImage *img = new GrayImage();
+    RGBImage *img_2 = new RGBImage();
+  
+    img->LoadImage("Image-Folder/city.jpg");
 
-    RGBImage *img_4 = new RGBImage();
-    img_4->LoadImage("Image-Folder/city.jpg");
+    img_2->LoadImage("Image-Folder/city.jpg");
   
     cout << "Procession......." << endl;
     
     cout << "In order to show the TiltShifter,we use city image." << endl;
-    img_3 -> Display_X_Server();
-    img_4 -> Display_X_Server();
+    img -> Display_X_Server();
+    img_2 -> Display_X_Server();
   
     if(form == 0){
     
-      GrayImage *img_3_process = img_3->TiltShifter(img_3->getH()/2,img_3->getH()*0.15,10);
-      img_3_process->Display_X_Server();
-      delete img_3;
-      img_3 = img_3_process;
+      GrayImage *img_process = img->TiltShifter(img->getH()/2,img->getH()*0.15,10);
+      img_process->Display_X_Server();
+      delete img;
+      img = img_process;
     
-      RGBImage *img_4_process = img_4->TiltShifter(img_3->getH()/2,img_3->getH()*0.15,10);
-      img_4_process->Display_X_Server();
-      delete img_4;
-      img_4 = img_4_process;
+      RGBImage *img_2_process = img_2->TiltShifter(img_2->getH()/2,img_2->getH()*0.15,10);
+      img_2_process->Display_X_Server();
+      delete img_2;
+      img_2 = img_2_process;
     }
-    
+
   } 
 //8.FisheyeEffect  
 
@@ -250,17 +205,8 @@ void printCase(int32_t option,int form){
       cout << "Please enter the distortion rate (0.5~1.5)" << endl;
     
       cin >> distortion;
-  
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/1-2.jpg");//spiderman
-  
-      RGBImage *img_2 = new RGBImage();
-      img_2->LoadImage("Image-Folder/4-2.jpg");//dog
-      
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-      img_2 -> Display_X_Server();
-  
+      cin.ignore();
+
       cout << "Procession......." << endl;
     
       GrayImage *img_process = img->FisheyeEffect(distortion);
@@ -277,17 +223,12 @@ void printCase(int32_t option,int form){
 
   if(option & CASE_Threshold){
   
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/2-1.jpg");//girl
-  
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-  
       cout << "Please enter the threshold value(0~255)" <<endl;
     
       int value = 0;
     
-      cin >> value;    
+      cin >> value;
+      cin.ignore();    
       
       cout << "Procession......." << endl;
     
@@ -295,26 +236,44 @@ void printCase(int32_t option,int form){
       img_process->Display_X_Server();
       delete img;
       img = img_process;
-  }
+
+  }  
 //10.Trigger OldPhotoEffect
 
   if(option & CASE_OldPhotoEffect){
+  
+      GrayImage *img = new GrayImage();
     
       cout << "We use special photo." << endl;
-      GrayImage *img_5 = new GrayImage();
-      img_5->LoadImage("Image-Folder/Howard.jpg");
+      img->LoadImage("Image-Folder/Howard.jpg");
       
       cout << "Here are the original pictures!" << endl;
       
-      img_5 -> Display_X_Server();
+      img -> Display_X_Server();
       
       cout << "Procession......." << endl;
     
-      GrayImage *img_5_process = img_5->OldPhotoEffect();
-      img_5_process->Display_X_Server();
-      delete img_5;
-      img_5 = img_5_process;
+      GrayImage *img_process = img->OldPhotoEffect();
+      img_process->Display_X_Server();
+      delete img;
+      img = img_process;
   }
-
+  
+  string filename_gray = "Processing_gary.jpg";
+  string filename_rgb = "Processing_rgb.jpg";
+  cout<<"Do you want to dump the image?(y/n) : ";
+    string ans;
+    getline(cin,ans);
+    if(ans=="y")
+    {  
+      string sub1 = filename_gray.substr(filename_gray.length()-4,4);
+      filename_gray = filename_gray.substr(0,filename_gray.length()-4);
+      filename_gray += "_final"+sub1;
+      img->DumpImage("AfterProcessing/"+filename_gray);
+      string sub2 = filename_rgb.substr(filename_rgb.length()-4,4);
+      filename_rgb = filename_rgb.substr(0,filename_rgb.length()-4);
+      filename_rgb += "_final"+sub2;
+      img_2->DumpImage("AfterProcessing/"+filename_rgb);
+    }
 
 }

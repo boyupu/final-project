@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <thread>
 #include <chrono>
+#include <sstream>
 using namespace std;
 
 void typeWriterEffect(const string& text, int delay_ms) {
@@ -36,7 +37,8 @@ int main(int argc, char *argv[]){
     while(flag == 1){
     
     sleep(1);
-      
+    
+    cout << "enter the procession you want to do." << endl;
     cout << "1.Horizon flip" << endl;
     cout << "2.Mosaic filter" << endl;
     cout << "3.Gaussian filter" << endl;
@@ -47,72 +49,54 @@ int main(int argc, char *argv[]){
     cout << "8.FisheyeEffect" << endl;
     cout << "9.Threshold(just for gray)" << endl;
     cout << "10.OldPhotoEffect(just for gray)" << endl;
-
+    cout << "11.ASCII" << endl;
     
-    cout << endl;
+    int32_t option = 0;
+    int cool = 0;
+    string op;
+    getline(cin,op);
+    stringstream read(op);
+    int times = count(op.begin(), op.end(), '&');
+    if (times == 0 && !op.empty()) {
+        times = 1;
+    } else if (times > 0) {
     
-    int option , form;
-    
-    cin >> option;
-    
-    switch(option){
-    
-      case 1:
-      
-        option = 0b000000000001;
-        break;
+        times++;
+    }
+       
+    for(int i = 0 ; i < times ; i++)
+    {
+      int temp;
+      char a;
+      read >> temp >> a;
+      switch (temp) {                 
+        case 1: option = option | CASE_Horizon_flip;   break;
+        case 2: option = option | CASE_Mosaic_filter;   break;
+        case 3: option = option | CASE_Gaussian_filter; break;
+        case 4: option = option | CASE_Laplacian_filter;  break;
+        case 5: option = option | CASE_negative_filter;  break;
+        case 6: option = option | CASE_adjustContrast;   break;
+        case 7: option = option | CASE_TiltShifter; break;
+        case 8: option = option | CASE_FisheyeEffect; break;
+        case 9: option = option | CASE_Threshold; break;
+        case 10: option = option | CASE_OldPhotoEffect; break;
+        case 11: 
         
-      case 2:
-      
-        option = 0b000000000010;
-        break;
-        
-      case 3:
-      
-        option = 0b000000000100;
-        break;
-        
-      case 4:
-      
-        option = 0b000000001000;
-        break;
-      case 5:
-      
-        option = 0b000000010000;
-        break;
-        
-      case 6:
-      
-        option = 0b000000100000;
-        break;
-        
-      case 7:
-      
-        option = 0b000001000000;
-        break;
-        
-      case 8:
-      
-        option = 0b000010000000;
-        break;
-        
-      case 9:
-      
-        option = 0b000100000000;
-        break;
-        
-      case 10:
-      
-        option = 0b001000000000;
-        break;
-        
+          RGBImage* special = new RGBImage();
+          special->LoadImage("Image-Folder/truck.png");
+          special->Display_ASCII();
+          cool = 1;
+          break;
+      }
+    }
+    if(cool == 0){
+      loadCase(option,0);
     }
     
-    loadCase(option,(form-1));
-    
     cout << "If you still want to try"<< endl <<"please enter 1 to continue, else enter 0 to go encryption" << endl;
-    
+
     cin >> flag;
+    cin.ignore();
     
   }
   
@@ -130,7 +114,6 @@ int main(int argc, char *argv[]){
     
     
     cout << "Please enter the sentence you want to encrypt in the picture." << endl;
-    cin.ignore();
     string passwd;
     getline(cin,passwd);
     
