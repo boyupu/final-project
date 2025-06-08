@@ -44,21 +44,22 @@ void loadCase(int32_t option,int form){
 }
 
 void printCase(int32_t option,int form){
+
+  GrayImage *img = new GrayImage();
+  img->LoadImage("Image-Folder/1-1.jpg");
+  
+  RGBImage *img_2 = new RGBImage();
+  img_2->LoadImage("Image-Folder/1-2.jpg");
+  cout << "Here are the original pictures!" << endl;
+  img -> Display_X_Server();
+  img_2 -> Display_X_Server();
+  
+  if((option & CASE_OldPhotoEffect || option & CASE_TiltShifter))
   
 //1.Trigger Horizon flip
 
   if(option & CASE_Horizon_flip){
-  
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/1-1.jpg");//cat
-  
-      RGBImage *img_2 = new RGBImage();
-      img_2->LoadImage("Image-Folder/1-2.jpg");//spiderman
-  
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-      img_2 -> Display_X_Server();
-  
+      
       cout << "Procession......." << endl;
     
       GrayImage *img_process = img->Horizon_flip();
@@ -81,16 +82,6 @@ void printCase(int32_t option,int form){
     int size = 0;
     
     cin >> size;
-    
-    GrayImage *img = new GrayImage();
-    img->LoadImage("Image-Folder/2-1.jpg");//girl
-  
-    RGBImage *img_2 = new RGBImage();
-    img_2->LoadImage("Image-Folder/2-2.jpg");//deadchild
-    
-    cout << "Here are the original pictures!" << endl;
-    img -> Display_X_Server();
-    img_2 -> Display_X_Server();
   
     cout << "Procession......." << endl;
     
@@ -109,16 +100,6 @@ void printCase(int32_t option,int form){
 
   if(option & CASE_Gaussian_filter){
     
-    GrayImage *img = new GrayImage();
-    img->LoadImage("Image-Folder/3-1.jpg");//sky
-  
-    RGBImage *img_2 = new RGBImage();
-    img_2->LoadImage("Image-Folder/3-2.jpg");//dog
-    
-    cout << "Here are the original pictures!" << endl;
-    img -> Display_X_Server();
-    img_2 -> Display_X_Server();
-  
     cout << "Procession......." << endl;
     
     GrayImage *img_process = img->Gaussian_filter(7,1.5);
@@ -135,17 +116,7 @@ void printCase(int32_t option,int form){
 //4.Trigger Laplacian filter
 
   if(option & CASE_Laplacian_filter){
-  
-    GrayImage *img = new GrayImage();
-    img->LoadImage("Image-Folder/4-1.jpg");//cat
-  
-    RGBImage *img_2 = new RGBImage();
-    img_2->LoadImage("Image-Folder/4-2.jpg");//dog
     
-    cout << "Here are the original pictures!" << endl;
-    img -> Display_X_Server();
-    img_2 -> Display_X_Server();
-  
     cout << "Procession......." << endl;
     
     GrayImage *img_process = img->Laplacian_filter();
@@ -163,16 +134,6 @@ void printCase(int32_t option,int form){
 
   if(option & CASE_negative_filter){
   
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/1-2.jpg");//spiderman
-  
-      RGBImage *img_2 = new RGBImage();
-      img_2->LoadImage("Image-Folder/4-2.jpg");//dog
-      
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-      img_2 -> Display_X_Server();
-  
       cout << "Procession......." << endl;
     
       GrayImage *img_process = img->Negative_filter();
@@ -188,16 +149,6 @@ void printCase(int32_t option,int form){
 //6.Trigger adjustContrast
 
   if(option & CASE_adjustContrast){
-  
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/1-2.jpg");//spiderman
-  
-      RGBImage *img_2 = new RGBImage();
-      img_2->LoadImage("Image-Folder/4-2.jpg");//dog
-      
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-      img_2 -> Display_X_Server();
   
       cout << "Procession......." << endl;
     
@@ -250,17 +201,7 @@ void printCase(int32_t option,int form){
       cout << "Please enter the distortion rate (0.5~1.5)" << endl;
     
       cin >> distortion;
-  
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/1-2.jpg");//spiderman
-  
-      RGBImage *img_2 = new RGBImage();
-      img_2->LoadImage("Image-Folder/4-2.jpg");//dog
-      
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
-      img_2 -> Display_X_Server();
-  
+
       cout << "Procession......." << endl;
     
       GrayImage *img_process = img->FisheyeEffect(distortion);
@@ -276,12 +217,6 @@ void printCase(int32_t option,int form){
 //9.Trigger Threshold
 
   if(option & CASE_Threshold){
-  
-      GrayImage *img = new GrayImage();
-      img->LoadImage("Image-Folder/2-1.jpg");//girl
-  
-      cout << "Here are the original pictures!" << endl;
-      img -> Display_X_Server();
   
       cout << "Please enter the threshold value(0~255)" <<endl;
     
